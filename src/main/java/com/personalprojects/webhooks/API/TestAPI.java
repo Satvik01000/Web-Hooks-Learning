@@ -56,7 +56,18 @@ public class TestAPI {
                             .bodyToMono(String.class)
                             .block();
 
-                    System.out.println("Comment posted successfully!");
+                    String diff = webClientBuilder.build()
+                                    .get()
+                                    .uri("https://api.github.com/repos/Satvik01000/Web-Hooks-Learning/pulls/" + issueNumber)
+                                    .headers(httpHeaders -> {
+                                        httpHeaders.set("Accept", "application/vnd.github.v3.diff");
+                                        httpHeaders.set("Authorization", "Bearer " + personalAccessToken);
+                                        httpHeaders.set("X-GitHub-Api-Version", "2026-03-10");
+                                    })
+                                    .retrieve()
+                                    .bodyToMono(String.class)
+                                    .block();
+                    System.out.println(diff);
                 } else {
                     System.out.println("Action was: " + jsonNode.get("action").asString());
                 }
