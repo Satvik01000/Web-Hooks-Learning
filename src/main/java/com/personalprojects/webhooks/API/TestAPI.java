@@ -49,7 +49,7 @@ public class TestAPI {
                             .headers(httpHeaders -> {
                                 httpHeaders.set("Accept", "application/vnd.github+json");
                                 httpHeaders.set("Authorization", "Bearer " + personalAccessToken);
-                                httpHeaders.set("X-GitHub-Api-Version", "2022-11-28");
+                                httpHeaders.set("X-GitHub-Api-Version", "2026-03-10");
                             })
                             .bodyValue(requestBody)
                             .retrieve()
